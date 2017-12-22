@@ -327,7 +327,7 @@ MiAqaraPlatform.prototype.parseMessage = function(msg, rinfo){
         that.log.debug("[Revc]" + msg);
         const payload = JSON.parse(msg.toString());
         if (payload.sid === '158d0001bd1a02') {
-            coffeebot.sendNotification();
+            coffeebot.sendNotification(JSON.parse(payload.data).status);
         }
         that.ParseUtil.parserAccessories(jsonObj);
     } else {

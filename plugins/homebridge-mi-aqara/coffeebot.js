@@ -18,12 +18,33 @@ const readyMsg = {
 }
 
 let timer;
+let latestClick = 0;
 
-exports.sendNotification = function () {
-  axios.post(webhook, prepareMsg).then(() => {
-    console.log(arguments);
-    timer = setTimeout(() => {
-      axios.post(webhook, readyMsg).then(() => {});
-    }, prepareDelay);
-  });
+exports.sendNotification = function (status) {
+  if (status === 'click') {
+    const now = +(new Date());
+    // 忽略短时间连续单击
+    if (now - latestClick < 10 * 1000) return;
+    latestClick = now;
+    console.log('[click] send prepare msg');
+    sendPrepare().then(() => {
+      timer = setTimeout(() => {
+        console.log('[click] send ready msg');
+        sendReady().then(() => {});
+      }, prepareDelay);
+    });
+  } else if (status === 'double_click') {
+    // 清除上一次单击的 timeout
+    clearTimeout(timer);
+    console.log('[double_click] send ready msg');
+    sendReady().then(() => {});
+  }
+}
+
+function sendPrepare() {
+  return axios.post(webhook, prepareMsg)
+}
+
+function sendReady() {
+  return axios.post(webhook, readyMsg)
 }
