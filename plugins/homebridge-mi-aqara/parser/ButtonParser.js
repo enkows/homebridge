@@ -72,7 +72,6 @@ class ButtonStatelessProgrammableSwitchParser extends AccessoryParser {
     getProgrammableSwitchEventCharacteristicValue(jsonObj, defaultValue) {
         var value = this.getValueFrJsonObjData(jsonObj, 'status');
         if(value === 'click') {
-            console.log('fuck');
             return this.Characteristic.ProgrammableSwitchEvent.SINGLE_PRESS;
         } else if(value === 'double_click') {
             return this.Characteristic.ProgrammableSwitchEvent.DOUBLE_PRESS;

@@ -1,0 +1,17 @@
+{
+  "bridge": {
+      "name": "Homebridge",
+      "username": "BC:25:8D:E3:CE:11",
+      "port": 51826,
+      "pin": "696-39-999"
+  },
+  "platforms": [{
+      "platform": "MiAqaraPlatform",
+      "gateways": {
+          "7811dc620f1e": "BF62D0E9539D4714",
+          "34ce009542e9": "2B423DBF900442E5",
+          "7811dc46dab6": "AFF001B8526A48B6",
+          "34ce00950f01": "49C7366D97BC460E"
+      }
+  }]
+}

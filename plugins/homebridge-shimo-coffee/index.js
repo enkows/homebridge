@@ -18,7 +18,4 @@ module.exports = function(homebridge) {
 
 function ShimoPlatform(log, config, api) {
   log("SamplePlatform Init");
-
-  console.log(api);
-
 }

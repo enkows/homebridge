@@ -9,6 +9,8 @@ const DeviceUtil = require('./lib/DeviceUtil');
 const AccessoryUtil = require('./lib/AccessoryUtil');
 const ParseUtil = require('./lib/ParseUtil');
 
+const coffeebot = require('./coffeebot');
+
 const iv = Buffer.from([0x17, 0x99, 0x6d, 0x09, 0x3d, 0x28, 0xdd, 0xb3, 0xba, 0x69, 0x5a, 0x2e, 0x6f, 0x58, 0x56, 0x2e]);
 const serverSocket = dgram.createSocket({
     type: 'udp4',
@@ -323,8 +325,11 @@ MiAqaraPlatform.prototype.parseMessage = function(msg, rinfo){
         }
     } else if (cmd === 'report') {
         that.log.debug("[Revc]" + msg);
+        const payload = JSON.parse(msg.toString());
+        if (payload.sid === '158d0001bd1a02') {
+            coffeebot.sendNotification();
+        }
         that.ParseUtil.parserAccessories(jsonObj);
-        console.log(msg.toString());
     } else {
         that.log.warn("[Revc]" + msg);
     }
