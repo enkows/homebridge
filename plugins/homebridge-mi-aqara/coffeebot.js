@@ -1,8 +1,8 @@
 const axios = require('axios');
 const webhook = 'https://oapi.dingtalk.com/robot/send?access_token=bee848e5b501012ebccc4a0493d6e24b9d53fa846c0957ccf50b48f0007f27cf';
 
-// const prepareDelay = 10 * 60 * 1000;
-const prepareDelay = 10 * 1000;
+const prepareDelay = 10 * 60 * 1000;
+// const prepareDelay = 10 * 1000;
 const prepareMsg = {
   msgtype: 'text',
   text: {
